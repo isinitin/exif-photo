@@ -105,7 +105,7 @@
 		<!-- Gallery Grid -->
 		{#if filteredPhotos.length > 0}
 			<section
-				class="columns-1 gap-5 pb-24 sm:columns-2 lg:columns-3 xl:columns-4"
+				class="gallery-container columns-1 gap-5 pb-24 sm:columns-2 lg:columns-3 xl:columns-4"
 				class:skip-stagger={navigationTracker.cameFromPhotoDetail}
 				aria-label="Photography collection"
 			>
@@ -204,5 +204,45 @@
 		opacity: 1 !important;
 		animation: none !important;
 		animation-delay: 0s !important;
+	}
+
+	/* Native CSS Masonry (Progressive Enhancement) */
+	@supports (display: grid-lanes) or (grid-template-rows: masonry) {
+		.gallery-container {
+			column-count: auto !important;
+			display: grid !important;
+			grid-template-rows: masonry !important;
+			grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+			gap: 1.25rem !important;
+		}
+
+		@supports (display: grid-lanes) {
+			.gallery-container {
+				display: grid-lanes !important;
+				grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+			}
+		}
+
+		@media (min-width: 640px) {
+			.gallery-container {
+				grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+			}
+		}
+
+		@media (min-width: 1024px) {
+			.gallery-container {
+				grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+			}
+		}
+
+		@media (min-width: 1280px) {
+			.gallery-container {
+				grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+			}
+		}
+
+		.gallery-container .grid-item {
+			margin-bottom: 0 !important;
+		}
 	}
 </style>
