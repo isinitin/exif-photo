@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { page } from '$app/state';
+	import { navigationTracker } from '$lib/navigation.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -105,6 +106,7 @@
 		{#if filteredPhotos.length > 0}
 			<section
 				class="columns-1 gap-5 pb-24 sm:columns-2 lg:columns-3 xl:columns-4"
+				class:skip-stagger={navigationTracker.cameFromPhotoDetail}
 				aria-label="Photography collection"
 			>
 				{#each filteredPhotos as photo, i (photo.id)}
@@ -196,5 +198,11 @@
 			opacity: 1;
 			transform: translateY(0);
 		}
+	}
+
+	:global(.skip-stagger) .grid-item {
+		opacity: 1 !important;
+		animation: none !important;
+		animation-delay: 0s !important;
 	}
 </style>

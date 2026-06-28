@@ -2,8 +2,11 @@
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import { onNavigate } from '$app/navigation';
+	import { navigationTracker } from '$lib/navigation.svelte';
 
 	let { children } = $props();
+
+	navigationTracker.init();
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;

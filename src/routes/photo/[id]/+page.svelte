@@ -4,6 +4,7 @@
 	import type { PageData } from './$types';
 	import { page } from '$app/state';
 	import ExifInfo from '$lib/components/exif-info.svelte';
+	import { navigationTracker } from '$lib/navigation.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -183,6 +184,12 @@
 	>
 		<a
 			href="/"
+			onclick={(e) => {
+				if (navigationTracker.hasPreviousSession) {
+					e.preventDefault();
+					history.back();
+				}
+			}}
 			class="group pointer-events-auto text-[11px] font-bold tracking-[0.2em] text-black/40 hover:text-black transition-colors uppercase flex items-center"
 		>
 			<span class="mr-2 transform transition-transform group-hover:-translate-x-1 duration-300">←</span>
