@@ -2,7 +2,9 @@
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "exif-photo",
 	"compatibility_date": "2026-06-21",
-	"compatibility_flags": ["nodejs_als"],
+	"compatibility_flags": [
+		"nodejs_als"
+	],
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"assets": {
 		"binding": "ASSETS",
@@ -13,18 +15,18 @@
 	"vars": {
 		"R2_PUBLIC_URL": ""
 	},
-	"r2_buckets": [
-		{
-			"bucket_name": "lenys",
-			"binding": "BUCKET"
-		}
-	],
 	"d1_databases": [
 		{
 			"binding": "DB",
-			"database_name": "lenys",
-			"database_id": "2c323e0e-cf59-464e-822e-b12f7ac4ee01",
+			"database_name": "exif-photo",
+			"database_id": "35761992-0958-4b83-8858-9fcb300ad6b8",
 			"migrations_dir": "./drizzle"
+		}
+	],
+	"r2_buckets": [
+		{
+			"bucket_name": "exif-photo",
+			"binding": "BUCKET"
 		}
 	]
 }
